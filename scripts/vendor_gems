@@ -7,10 +7,14 @@ aws_cpi_gems_dir=$aws_cpi_dir/src/bosh_aws_cpi
 
 cleanup() {
   cd $aws_cpi_gems_dir
-  rm Gemfile*
+  rm -rf Gemfile*
 }
 
 trap cleanup EXIT
+
+if [ ! -d $aws_cpi_gems_dir ]; then
+  mkdir $aws_cpi_gems_dir
+fi
 
 (
   cd $aws_cpi_gems_dir
